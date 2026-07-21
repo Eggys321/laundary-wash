@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@import "./fonts.css";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme{
+  /* Colors */
+  /* Brand */
+  --color-primary: #6255EC;
+  /* Neutral */
+  /* Text */
+  --color-text-primary:#FDFDFD;
+  --color-text-secondary:#F6F6F6;
+  --color-text-white:#FFFFFF;
+  /* Semantic */
+  /* Surface */
+  --color-background-dark:#141414;
+  --color-background-gray-2:#262626;
+  --color-background-gray-3:#454545;
+  /* Border */
+  --color-btn-border-:#F6F6F6;
+  /* Component-specific */
+  /* Fonts */
+  --font-red-hat-display: "Red Hat Display", sans-serif;
+  --font-lato: "Lato", sans-serif;
+  --font-instrument-sans: "Instrument Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  /* Shadows */
+}
+  
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-background-dark);
+  }
