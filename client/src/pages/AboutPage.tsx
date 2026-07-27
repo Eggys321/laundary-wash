@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
 import { ABOUT_VALUES } from "@/data/siteData";
-import {ArrowRight} from "lucide-react";
 import { PageHero } from "@/components";
 import aboutHeroImg from "@/assets/images/about-img.jpg"
+import CTA from "@/components/common/CTA";
 export default function AboutPage() {
   return (
     <main className="bg-background-gray-2 font-lato">
@@ -147,25 +146,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-20 md:pb-24 lg:px-10">
-        <div className=" rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
-          <h2 className="font-redhat text-3xl font-bold text-white sm:text-4xl">
-            Ready to experience easier laundry?
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-xl text-white/80">
-            Give yourself one less thing to worry about.
-          </p>
-
-          <Link
-            to="/book"
-            className="btn mt-8 rounded-xl border-none bg-white px-8 text-primary hover:bg-white/90"
-          >
-            Book a Laundry
-            <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
+      <CTA
+       title="Ready to experience easier laundry?"
+        description="Give yourself one less thing to worry about."
+      />
     </main>
   );
 }

@@ -27,7 +27,7 @@ export default function Navbar() {
   );
 
   return (
-    <header className="bg-background-gray-2">
+    <header className="bg-background-gray-2 sticky top-0 z-1">
       <nav className="container mx-auto flex items-center justify-between px-4 py-6 font-lato md:px-3 md:py-10 lg:px-10">
         {/* Brand */}
         <Link to="/">

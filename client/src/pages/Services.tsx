@@ -1,13 +1,12 @@
-import { Link } from "react-router-dom";
-import {ArrowRight} from "lucide-react";
 import { SERVICES_STEPS, SERVICES_VALUES } from "@/data/siteData";
 import { PageHero } from "@/components";
-import servicesHeroImg from "@/assets/images/services-img.jpg"
+import servicesHeroImg from "@/assets/images/services-img.jpg";
+import CTA from "@/components/common/CTA";
 
 export default function Services() {
   return (
     <main className="bg-background-gray-2 font-lato">
-       <PageHero
+      <PageHero
         variant="inner"
         title="Laundry Services Made Simple"
         description="From everyday washing to professional garment care, we make keeping your clothes fresh, clean, and ready to wear effortless."
@@ -88,8 +87,8 @@ export default function Services() {
             </h2>
 
             <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-text-secondary">
-              Getting your laundry done shouldn't be complicated. We've made
-              the entire process simple.
+              Getting your laundry done shouldn't be complicated. We've made the
+              entire process simple.
             </p>
           </div>
 
@@ -114,25 +113,10 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-20 md:pb-24 lg:px-10">
-        <div className="rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
-          <h2 className="font-redhat text-3xl font-bold text-white sm:text-4xl">
-            Ready to take laundry off your to-do list?
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-xl text-white/80">
-            Let us handle the washing while you focus on what matters most.
-          </p>
-
-          <Link
-            to="/book"
-            className="btn mt-8 rounded-xl border-none bg-white px-8 text-primary hover:bg-white/90"
-          >
-            Book a Laundry
-            <ArrowRight size={18} />
-          </Link>
-        </div>
-      </section>
+      <CTA
+        title="Ready to take laundry off your to-do list?"
+        description="Let us handle the washing while you focus on what matters most."
+      />
     </main>
   );
 }
