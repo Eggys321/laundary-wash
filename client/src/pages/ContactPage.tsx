@@ -1,55 +1,23 @@
-import {
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { PageHero } from "@/components";
+import { CONTACT_VALUES } from "@/data/siteData";
+import contactImgHero from "@/assets/images/contact-img.jpg"
 
-const contactDetails = [
-  {
-    icon: Phone,
-    title: "Call Us",
-    value: "+234 XXX XXX XXXX",
-    description: "We're available to help with your questions.",
-  },
-  {
-    icon: Mail,
-    title: "Email Us",
-    value: "hello@laundrywash.com",
-    description: "Send us a message and we'll get back to you.",
-  },
-  {
-    icon: MapPin,
-    title: "Visit Us",
-    value: "Lagos, Nigeria",
-    description: "Our team is ready to assist you.",
-  },
-];
 
 export default function ContactPage() {
   return (
     <main className="bg-background-gray-2 font-lato">
       {/* Hero */}
-      <section className="px-6 py-20 md:py-28 lg:px-40">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-            Contact Us
-          </span>
-
-          <h1 className="mt-4 font-redhat text-4xl font-bold leading-tight text-text-primary sm:text-5xl lg:text-6xl">
-            We're here to help.
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-text-secondary sm:text-lg">
-            Have a question about our services, need help with a booking, or
-            just want to learn more about Laundry Wash? We'd love to hear from
-            you.
-          </p>
-        </div>
-      </section>
+           <PageHero
+        variant="inner"
+        title="We're Here to Help"
+        description="Have a question about our services, pickup and delivery, or your laundry? Reach out to our team and we'll be happy to help."
+        image={contactImgHero}
+        imageAlt="Laundry Wash customer support"
+      />
 
       {/* Contact Section */}
-      <section className="bg-white px-6 py-20 md:py-24 lg:px-40">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
+      <section className="bg-white px-6 py-20 md:py-24 lg:px-10">
+        <div className="mx-auto grid  gap-12 lg:grid-cols-2">
           {/* Contact Information */}
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest text-primary">
@@ -66,7 +34,7 @@ export default function ContactPage() {
             </p>
 
             <div className="mt-10 space-y-6">
-              {contactDetails.map((detail) => {
+              {CONTACT_VALUES.map((detail) => {
                 const Icon = detail.icon;
 
                 return (
@@ -225,8 +193,8 @@ export default function ContactPage() {
       </section>
 
       {/* Support CTA */}
-      <section className="px-6 py-20 md:py-24 lg:px-40">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="px-6 py-20 md:py-24 lg:px-10">
+        <div className=" text-center">
           <h2 className="font-redhat text-3xl font-bold text-text-primary sm:text-4xl">
             Need help with a booking?
           </h2>

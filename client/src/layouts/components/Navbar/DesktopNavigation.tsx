@@ -13,7 +13,7 @@ export default function DesktopNavigation({
   return (
     <>
     
-    <div className="hidden items-center gap-8 text-xl font-normal lg:flex lg:gap-12">
+    <div className="hidden items-center gap-8 md:text-[15px] lg:text-xl font-normal md:flex lg:gap-12">
       {links.map(({ label, path }) => (
         <NavLink
           key={path}

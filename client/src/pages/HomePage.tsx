@@ -1,6 +1,24 @@
+import { PageHero } from "@/components";
+import homeImgHero from "@/assets/images/home-img-hero.png";
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto px-4 py-6 md:px-3 md:py-4 lg:px-10 text-white ">HomePage</div>
-  )
+    <main>
+      <PageHero
+        variant="home"
+        title="Quick. Clean. Delivered."
+        description="Laundry Wash helps you save time with fast, reliable pickup and delivery service. Because you deserve clean clothes without the wait."
+        image={homeImgHero}
+        imageAlt="Laundry Wash pickup and delivery service"
+        primaryAction={{
+          label: "Book Laundry",
+          href: "/book",
+        }}
+        secondaryAction={{
+          label: "Log In",
+          href: "/login",
+        }}
+      />
+    </main>
+  );
 }

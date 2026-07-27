@@ -1,63 +1,28 @@
 import { Link } from "react-router-dom";
-import {
-  ArrowRight,
-  Clock3,
-  HeartHandshake,
-  ShieldCheck,
-  Sparkles,
-} from "lucide-react";
-
-const values = [
-  {
-    icon: Clock3,
-    title: "Convenience",
-    description:
-      "Your time matters. Our service is designed to fit into your schedule and make laundry less of a chore.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Quality Care",
-    description:
-      "We treat your clothes with care and give different fabrics and garments the attention they deserve.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Reliability",
-    description:
-      "From pickup to delivery, we aim to provide a dependable experience you can trust.",
-  },
-  {
-    icon: Sparkles,
-    title: "Simplicity",
-    description:
-      "No complicated process. Book your service, let us handle the laundry, and enjoy your freshly cleaned clothes.",
-  },
-];
-
+import { ABOUT_VALUES } from "@/data/siteData";
+import {ArrowRight} from "lucide-react";
+import { PageHero } from "@/components";
+import aboutHeroImg from "@/assets/images/about-img.jpg"
 export default function AboutPage() {
   return (
     <main className="bg-background-gray-2 font-lato">
       {/* Hero */}
-      <section className="px-6 py-20 md:py-28 lg:px-40">
-        <div className="mx-auto max-w-4xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-primary">
-            About Laundry Wash
-          </span>
 
-          <h1 className="mt-4 font-redhat text-4xl font-bold leading-tight text-text-primary sm:text-5xl lg:text-6xl">
-            We make laundry day easier.
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-text-secondary sm:text-lg">
-            Laundry is a part of everyday life, but it doesn't have to take up
-            your entire day.
-          </p>
-        </div>
-      </section>
+           <PageHero
+        variant="inner"
+        title="Laundry Care You Can Count On"
+        description="We're on a mission to make laundry easier by combining dependable service, quality care, and convenient pickup and delivery."
+        image={aboutHeroImg}
+        imageAlt="Laundry Wash team providing quality laundry care"
+        primaryAction={{
+          label: "Book Laundry",
+          href: "/book",
+        }}
+      />
 
       {/* Who We Are */}
-      <section className="bg-white px-6 py-20 md:py-24 lg:px-40 text-primary ">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
+      <section className="bg-white px-6 py-20 md:py-24 lg:px-10 text-primary ">
+        <div className="mx-auto grid  gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest">
               Who We Are
@@ -94,8 +59,8 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="px-6 py-20 md:py-24 lg:px-40 text-text-secondary">
-        <div className="mx-auto max-w-4xl text-center">
+      <section className="px-6 py-20 md:py-24 lg:px-10 text-text-secondary">
+        <div className=" text-center">
           <span className="text-sm font-semibold uppercase tracking-widest">
             Our Mission
           </span>
@@ -118,8 +83,8 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-white px-6 py-20 md:py-24 lg:px-40">
-        <div className="mx-auto max-w-7xl">
+      <section className="bg-white px-6 py-20 md:py-24 lg:px-10">
+        <div className="">
           <div className="text-center">
             <span className="text-sm font-semibold uppercase tracking-widest text-primary">
               Why Choose Us?
@@ -131,7 +96,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => {
+            {ABOUT_VALUES.map((value) => {
               const Icon = value.icon;
 
               return (
@@ -158,8 +123,8 @@ export default function AboutPage() {
       </section>
 
       {/* Promise */}
-      <section className="px-6 py-20 md:py-24 lg:px-40">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="px-6 py-20 md:py-24 lg:px-10">
+        <div className=" text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary">
             Our Promise
           </span>
@@ -182,8 +147,8 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="px-6 pb-20 md:pb-24 lg:px-40">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
+      <section className="px-6 pb-20 md:pb-24 lg:px-10">
+        <div className=" rounded-3xl bg-primary px-6 py-14 text-center sm:px-12">
           <h2 className="font-redhat text-3xl font-bold text-white sm:text-4xl">
             Ready to experience easier laundry?
           </h2>
