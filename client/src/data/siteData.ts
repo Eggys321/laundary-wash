@@ -9,7 +9,13 @@ import {
     Mail,
     MapPin,
     Phone,
+    CalendarCheck,
+    Leaf,
 } from "lucide-react";
+
+import washFoldImg from "@/assets/images/services-img.jpg";
+import dryCleaningImg from "@/assets/images/about-img.jpg";
+import pickupDeliveryImg from "@/assets/images/contact-img.jpg";
 
 export const ABOUT_VALUES = [
   {
@@ -128,5 +134,50 @@ export const CONTACT_VALUES  = [
     title: "Visit Us",
     value: "Lagos, Nigeria",
     description: "Our team is ready to assist you.",
+  },
+];
+
+export const HOME_SERVICE_HIGHLIGHTS = [
+  {
+    title: "Wash & Fold",
+    description:
+      "Everyday laundry washed, dried, and neatly folded so it's ready to wear.",
+    image: washFoldImg,
+  },
+  {
+    title: "Dry Cleaning",
+    description:
+      "Professional care for delicate and special garments that need extra attention.",
+    image: dryCleaningImg,
+  },
+  {
+    title: "Pickup & Delivery",
+    description:
+      "Schedule a pickup and have your fresh laundry delivered back to your door.",
+    image: pickupDeliveryImg,
+  },
+];
+
+export const HOME_HOW_IT_WORKS = [
+  {
+    icon: CalendarCheck,
+    title: "Schedule Your Service",
+    description:
+      "Pick a service and a convenient pickup time in just a few taps.",
+    tone: "bg-sky-500/15 text-sky-500",
+  },
+  {
+    icon: Leaf,
+    title: "We Clean & Care",
+    description:
+      "Your clothes are professionally cleaned and handled with care.",
+    tone: "bg-emerald-500/15 text-emerald-500",
+  },
+  {
+    icon: Truck,
+    title: "We Deliver",
+    description:
+      "Freshly cleaned laundry delivered back to your doorstep, on time.",
+    tone: "bg-amber-500/15 text-amber-500",
   },
 ];

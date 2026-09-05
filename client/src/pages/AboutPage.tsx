@@ -1,13 +1,16 @@
 import { ABOUT_VALUES } from "@/data/siteData";
-import { PageHero } from "@/components";
-import aboutHeroImg from "@/assets/images/about-img.jpg"
-import CTA from "@/components/common/CTA";
+import { CTA, PageHero, Seo } from "@/components";
+import aboutHeroImg from "@/assets/images/about-img.jpg";
+
 export default function AboutPage() {
   return (
-    <main className="bg-background-gray-2 font-lato">
-      {/* Hero */}
+    <div className="bg-background-gray-2 font-lato">
+      <Seo
+        title="About Us"
+        description="Learn about Laundry Wash's mission to make professional laundry care convenient, reliable, and accessible."
+      />
 
-           <PageHero
+      <PageHero
         variant="inner"
         title="Laundry Care You Can Count On"
         description="We're on a mission to make laundry easier by combining dependable service, quality care, and convenient pickup and delivery."
@@ -19,9 +22,8 @@ export default function AboutPage() {
         }}
       />
 
-      {/* Who We Are */}
       <section className="bg-white px-6 py-20 md:py-24 lg:px-10 text-primary ">
-        <div className="mx-auto grid  gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container mx-auto grid  gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest">
               Who We Are
@@ -57,7 +59,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Mission */}
       <section className="px-6 py-20 md:py-24 lg:px-10 text-text-secondary">
         <div className=" text-center">
           <span className="text-sm font-semibold uppercase tracking-widest">
@@ -81,9 +82,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
       <section className="bg-white px-6 py-20 md:py-24 lg:px-10">
-        <div className="">
+        <div className="container mx-auto">
           <div className="text-center">
             <span className="text-sm font-semibold uppercase tracking-widest text-primary">
               Why Choose Us?
@@ -121,7 +121,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Promise */}
       <section className="px-6 py-20 md:py-24 lg:px-10">
         <div className=" text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-primary">
@@ -145,11 +144,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <CTA
        title="Ready to experience easier laundry?"
         description="Give yourself one less thing to worry about."
       />
-    </main>
+    </div>
   );
 }

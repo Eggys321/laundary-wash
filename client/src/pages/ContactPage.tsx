@@ -1,13 +1,53 @@
-import { PageHero } from "@/components";
-import { CONTACT_VALUES } from "@/data/siteData";
-import contactImgHero from "@/assets/images/contact-img.jpg"
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import toast from "react-hot-toast";
 
+import { Button, PageHero, Seo, TextareaField, TextField } from "@/components";
+import { CONTACT_VALUES } from "@/data/siteData";
+import { contactSchema, type ContactFormValues } from "@/schemas/contactSchema";
+import { useContactStore } from "@/store/contactStore";
+import contactImgHero from "@/assets/images/contact-img.jpg";
 
 export default function ContactPage() {
+  const addMessage = useContactStore((state) => state.addMessage);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
+  });
+
+  const onSubmit = async (values: ContactFormValues) => {
+    await new Promise((resolve) => setTimeout(resolve, 700));
+
+    addMessage({
+      id: `msg-${Date.now()}`,
+      ...values,
+      submittedAt: new Date().toISOString(),
+    });
+
+    toast.success("Message sent! Our team will get back to you shortly.");
+    reset();
+  };
+
   return (
-    <main className="bg-background-gray-2 font-lato">
-      {/* Hero */}
-           <PageHero
+    <div className="bg-background-gray-2 font-lato">
+      <Seo
+        title="Contact Us"
+        description="Get in touch with the Laundry Wash team for questions about services, pickup, delivery, or your order."
+      />
+
+      <PageHero
         variant="inner"
         title="We're Here to Help"
         description="Have a question about our services, pickup and delivery, or your laundry? Reach out to our team and we'll be happy to help."
@@ -15,16 +55,14 @@ export default function ContactPage() {
         imageAlt="Laundry Wash customer support"
       />
 
-      {/* Contact Section */}
       <section className="bg-white px-6 py-20 md:py-24 lg:px-10">
-        <div className="mx-auto grid  gap-12 lg:grid-cols-2">
-          {/* Contact Information */}
+        <div className="container mx-auto grid gap-12 lg:grid-cols-2">
           <div>
             <span className="text-sm font-semibold uppercase tracking-widest text-primary">
               Get In Touch
             </span>
 
-            <h2 className="mt-3 font-redhat text-3xl font-bold  sm:text-4xl">
+            <h2 className="mt-3 font-redhat text-3xl font-bold sm:text-4xl">
               Let's talk.
             </h2>
 
@@ -38,45 +76,31 @@ export default function ContactPage() {
                 const Icon = detail.icon;
 
                 return (
-                  <div
-                    key={detail.title}
-                    className="flex gap-4"
-                  >
+                  <div key={detail.title} className="flex gap-4">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon size={22} />
                     </div>
 
                     <div>
-                      <h3 className="font-redhat font-bold">
-                        {detail.title}
-                      </h3>
-
-                      <p className="mt-1 font-medium">
-                        {detail.value}
-                      </p>
-
-                      <p className="mt-1 text-sm ">
-                        {detail.description}
-                      </p>
+                      <h3 className="font-redhat font-bold">{detail.title}</h3>
+                      <p className="mt-1 font-medium">{detail.value}</p>
+                      <p className="mt-1 text-sm ">{detail.description}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            {/* Business Hours */}
             <div className="mt-10 border-t border-black/5 pt-8">
-              <h3 className="font-redhat text-lg font-bold">
-                Business Hours
-              </h3>
+              <h3 className="font-redhat text-lg font-bold">Business Hours</h3>
 
               <div className="mt-4 space-y-2 text-sm ">
-                <div className="flex justify-between max-w-sm">
+                <div className="flex max-w-sm justify-between">
                   <span>Monday – Saturday</span>
                   <span>8:00 AM – 6:00 PM</span>
                 </div>
 
-                <div className="flex justify-between max-w-sm">
+                <div className="flex max-w-sm justify-between">
                   <span>Sunday</span>
                   <span>Closed</span>
                 </div>
@@ -84,7 +108,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Contact Form */}
           <div className="rounded-2xl bg-background-gray-2 p-6 sm:p-8">
             <h2 className="font-redhat text-2xl font-bold text-text-primary">
               Send us a message
@@ -95,104 +118,59 @@ export default function ContactPage() {
               possible.
             </p>
 
-            <form className="mt-8 space-y-5">
-              <div>
-                <label
-                  htmlFor="fullName"
-                  className="mb-2 block text-sm font-medium text-text-primary"
-                >
-                  Full Name
-                </label>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="mt-8 space-y-5"
+            >
+              <TextField
+                label="Full Name"
+                autoComplete="name"
+                placeholder="Enter your full name"
+                error={errors.fullName?.message}
+                {...register("fullName")}
+              />
 
-                <input
-                  id="fullName"
-                  name="fullName"
-                  type="text"
-                  placeholder="Enter your full name"
-                  className="input w-full rounded-xl border-black/10 bg-white"
-                />
-              </div>
+              <TextField
+                label="Email Address"
+                type="email"
+                autoComplete="email"
+                placeholder="Enter your email address"
+                error={errors.email?.message}
+                {...register("email")}
+              />
 
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-text-primary"
-                >
-                  Email Address
-                </label>
+              <TextField
+                label="Phone Number"
+                type="tel"
+                autoComplete="tel"
+                placeholder="Enter your phone number"
+                error={errors.phone?.message}
+                {...register("phone")}
+              />
 
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="input w-full rounded-xl border-black/10 bg-white"
-                />
-              </div>
+              <TextField
+                label="Subject"
+                placeholder="What can we help you with?"
+                error={errors.subject?.message}
+                {...register("subject")}
+              />
 
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="mb-2 block text-sm font-medium text-text-primary"
-                >
-                  Phone Number
-                </label>
+              <TextareaField
+                label="Message"
+                placeholder="Tell us how we can help..."
+                error={errors.message?.message}
+                {...register("message")}
+              />
 
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  className="input w-full rounded-xl border-black/10 bg-white"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="mb-2 block text-sm font-medium text-text-primary"
-                >
-                  Subject
-                </label>
-
-                <input
-                  id="subject"
-                  name="subject"
-                  type="text"
-                  placeholder="What can we help you with?"
-                  className="input w-full rounded-xl border-black/10 bg-white"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="mb-2 block text-sm font-medium text-text-primary"
-                >
-                  Message
-                </label>
-
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  placeholder="Tell us how we can help..."
-                  className="textarea w-full resize-none rounded-xl border-black/10 bg-white"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn btn-primary w-full rounded-xl"
-              >
+              <Button type="submit" fullWidth isLoading={isSubmitting}>
                 Send Message
-              </button>
+              </Button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* Support CTA */}
       <section className="px-6 py-20 md:py-24 lg:px-10">
         <div className=" text-center">
           <h2 className="font-redhat text-3xl font-bold text-text-primary sm:text-4xl">
@@ -205,6 +183,6 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

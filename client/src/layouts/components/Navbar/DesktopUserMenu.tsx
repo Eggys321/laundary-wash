@@ -21,7 +21,6 @@ export default function DesktopUserMenu({
 
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -45,7 +44,6 @@ export default function DesktopUserMenu({
     };
   }, []);
 
-  // Close with Escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -71,7 +69,6 @@ export default function DesktopUserMenu({
       ref={menuRef}
       className="relative hidden lg:block"
     >
-      {/* User Trigger */}
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -79,7 +76,6 @@ export default function DesktopUserMenu({
         aria-haspopup="menu"
         className="flex items-center gap-3"
       >
-        {/* Avatar */}
         {avatarUrl ? (
           <img
             src={avatarUrl}
@@ -105,7 +101,6 @@ export default function DesktopUserMenu({
         />
       </button>
 
-      {/* Dropdown */}
       <div
         className={clsx(
           "absolute right-0 top-full z-50 mt-3 w-64 origin-top-right rounded-xl bg-[#444444] p-3 shadow-xl transition-all duration-200",
@@ -115,20 +110,17 @@ export default function DesktopUserMenu({
         )}
       >
         <nav className="flex flex-col">
-          {accountNavigationLinks.map(
-            ({ label, path,icon }) => (
-              <Link
-                key={path}
-                to={path}
-                onClick={() => setIsOpen(false)}
-                className="rounded-lg flex gap-2 items-center px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-              >
-               
-                <img src={icon} alt="logo" />
-                {label}
-              </Link>
-            ),
-          )}
+          {accountNavigationLinks.map(({ label, path, icon }) => (
+            <Link
+              key={path}
+              to={path}
+              onClick={() => setIsOpen(false)}
+              className="rounded-lg flex gap-2 items-center px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+            >
+              {icon && <img src={icon} alt="" className="h-5 w-5 shrink-0" />}
+              {label}
+            </Link>
+          ))}
 
           <button
             type="button"
@@ -138,8 +130,7 @@ export default function DesktopUserMenu({
             }}
             className="rounded-lg px-4 py-3 gap-2 flex items-center text-left text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
           >
-            
-            <img src={logOutLogo} alt="" />
+            <img src={logOutLogo} alt="" className="h-5 w-5 shrink-0" />
             <span>Logout</span>
           </button>
         </nav>

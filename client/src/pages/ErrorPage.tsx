@@ -1,12 +1,17 @@
 import { Link, useRouteError } from "react-router-dom";
 
+import { Seo } from "@/components";
+
 export default function ErrorPage() {
   const error = useRouteError();
 
-  console.error("Route Error:", error);
+  if (import.meta.env.DEV) {
+    console.error("Route Error:", error);
+  }
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-background-gray-2 px-6">
+      <Seo title="Something Went Wrong" description="An unexpected error occurred." />
       <div className="max-w-md text-center">
         <h1 className="font-redhat text-4xl font-bold text-text-primary">
           Something went wrong

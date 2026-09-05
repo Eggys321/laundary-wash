@@ -1,11 +1,15 @@
 import { SERVICES_STEPS, SERVICES_VALUES } from "@/data/siteData";
-import { PageHero } from "@/components";
+import { CTA, PageHero, Seo } from "@/components";
 import servicesHeroImg from "@/assets/images/services-img.jpg";
-import CTA from "@/components/common/CTA";
 
 export default function Services() {
   return (
-    <main className="bg-background-gray-2 font-lato">
+    <div className="bg-background-gray-2 font-lato">
+      <Seo
+        title="Services"
+        description="Explore Laundry Wash's services: wash & fold, wash & iron, dry cleaning, ironing, and pickup & delivery."
+      />
+
       <PageHero
         variant="inner"
         title="Laundry Services Made Simple"
@@ -18,9 +22,8 @@ export default function Services() {
         }}
       />
 
-      {/* Services */}
       <section className="bg-white px-6 py-20 md:py-24 lg:px-10 ">
-        <div className="">
+        <div className="container mx-auto">
           <div className="">
             <span className="text-sm font-semibold uppercase tracking-widest text-primary ">
               What We Offer
@@ -74,8 +77,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="px-6 py-20 md:py-24 lg:px-10">
+      <section className="container mx-auto px-6 py-20 md:py-24 lg:px-10">
         <div className="">
           <div className="text-center">
             <span className="text-sm font-semibold uppercase tracking-widest text-primary">
@@ -112,11 +114,10 @@ export default function Services() {
         </div>
       </section>
 
-      {/* CTA */}
       <CTA
         title="Ready to take laundry off your to-do list?"
         description="Let us handle the washing while you focus on what matters most."
       />
-    </main>
+    </div>
   );
 }

@@ -44,7 +44,6 @@ export default function PageHero({
             : "container mx-auto px-4 py-16 font-lato md:px-6 md:py-20 lg:px-20 xl:px-24"
         }
       >
-        {/* Hero Content */}
         <div
           className={
             isHome
@@ -85,7 +84,6 @@ export default function PageHero({
           {children}
         </div>
 
-        {/* Hero Image */}
         <div
           className={
             isHome
@@ -100,9 +98,8 @@ export default function PageHero({
               className="w-full object-cover md:h-130 lg:h-150"
             />
 
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-black/5" />           
-      </div>
+            <div className="absolute inset-0 bg-black/5" />
+          </div>
         </div>
       </div>
     </section>

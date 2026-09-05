@@ -1,7 +1,4 @@
-import {
-  ChevronDown,
-  UserCircle,
-} from "lucide-react";
+import { ChevronDown, UserCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { useState } from "react";
@@ -9,14 +6,14 @@ import { useState } from "react";
 import { accountNavigationLinks } from "@/constants";
 
 interface MobileUserMenuProps {
-  userName?: string;
+  userName: string;
   avatarUrl?: string;
   closeMenu: () => void;
   onLogout?: () => void;
 }
 
 export default function MobileUserMenu({
-  userName = "John Doe",
+  userName,
   avatarUrl,
   closeMenu,
   onLogout,
@@ -25,12 +22,9 @@ export default function MobileUserMenu({
 
   return (
     <div className="border-t">
-      {/* User Trigger */}
       <button
         type="button"
-        onClick={() =>
-          setIsOpen((prev) => !prev)
-        }
+        onClick={() => setIsOpen((prev) => !prev)}
         className="flex w-full items-center justify-between p-5"
         aria-expanded={isOpen}
       >
@@ -47,9 +41,7 @@ export default function MobileUserMenu({
             </div>
           )}
 
-          <span className="font-medium text-text-primary">
-            {userName}
-          </span>
+          <span className="font-medium text-text-primary">{userName}</span>
         </div>
 
         <ChevronDown
@@ -61,22 +53,20 @@ export default function MobileUserMenu({
         />
       </button>
 
-      {/* Account Links */}
       {isOpen && (
         <div className="px-5 pb-5">
           <nav className="rounded-xl bg-[#444444] p-3">
-            {accountNavigationLinks.map(
-              ({ label, path }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  onClick={closeMenu}
-                  className="block rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-white"
-                >
-                  {label}
-                </Link>
-              ),
-            )}
+            {accountNavigationLinks.map(({ label, path, icon }) => (
+              <Link
+                key={path}
+                to={path}
+                onClick={closeMenu}
+                className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-white"
+              >
+                {icon && <img src={icon} alt="" className="h-4 w-4" />}
+                {label}
+              </Link>
+            ))}
 
             <button
               type="button"

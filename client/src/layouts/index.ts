@@ -1,3 +1,4 @@
 export { default as AdminLayout } from "./AdminLayout";
 export { default as AuthLayout } from "./AuthLayout";
 export { default as CustomerLayout } from "./CustomerLayout";
+export { default as AccountLayout } from "./AccountLayout";

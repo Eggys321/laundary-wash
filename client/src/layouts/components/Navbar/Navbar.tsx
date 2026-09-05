@@ -13,23 +13,17 @@ import {
 } from ".";
 
 export default function Navbar() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
-  const {
-    isMenuOpen,
-    openMenu,
-    closeMenu,
-  } = useMobileMenu();
+  const { isMenuOpen, openMenu, closeMenu } = useMobileMenu();
 
   const visibleLinks = navigationLinks.filter(
-    ({ requiresAuth }) =>
-      !requiresAuth || isAuthenticated,
+    ({ requiresAuth }) => !requiresAuth || isAuthenticated,
   );
 
   return (
     <header className="bg-background-gray-2 sticky top-0 z-1">
       <nav className="container mx-auto flex items-center justify-between px-4 py-6 font-lato md:px-3 md:py-10 lg:px-10">
-        {/* Brand */}
         <Link to="/">
           <img
             src={brandLogo}
@@ -38,41 +32,29 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <DesktopNavigation
-          links={visibleLinks}
-        />
+        <DesktopNavigation links={visibleLinks} />
 
-        {/* Desktop Authentication */}
-        <DesktopAuthButtons
-          isAuthenticated={isAuthenticated}
-        />
+        <DesktopAuthButtons isAuthenticated={isAuthenticated} />
 
-        {/* Desktop User */}
-        {isAuthenticated && (
+        {isAuthenticated && user && (
           <DesktopUserMenu
-            userName="John Doe"
-            avatarUrl="https://res.cloudinary.com/eguono/image/upload/v1784630742/laundary-wash/avatar_i0hx4d.png"
+            userName={user.name}
+            avatarUrl={user.avatarUrl}
+            onLogout={logout}
           />
         )}
-        
 
-        {/* Mobile Menu */}
-        <MobileMenuButton
-          onClick={openMenu}
-        />
-        
+        <MobileMenuButton onClick={openMenu} />
       </nav>
-      
 
-      {/* Mobile Drawer */}
       <MobileDrawer
         isOpen={isMenuOpen}
         closeMenu={closeMenu}
         links={visibleLinks}
         isAuthenticated={isAuthenticated}
+        user={user}
+        onLogout={logout}
       />
-      
     </header>
   );
 }

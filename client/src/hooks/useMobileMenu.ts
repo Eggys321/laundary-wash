@@ -9,7 +9,6 @@ const useMobileMenu = () => {
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
 
@@ -18,7 +17,6 @@ const useMobileMenu = () => {
     };
   }, [isMenuOpen]);
 
-  // Close on Escape
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
