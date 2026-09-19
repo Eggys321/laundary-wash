@@ -8,7 +8,7 @@ import { AuthCard } from "@/layouts/components";
 import { Button, PasswordField, Seo, TextField } from "@/components";
 import { useAuth } from "@/hooks";
 import { loginSchema, type LoginFormValues } from "@/schemas/authSchemas";
-import { DEMO_CREDENTIALS } from "@/data/mockUsers";
+import { DEMO_ADMIN_CREDENTIALS, DEMO_CREDENTIALS } from "@/data/mockUsers";
 
 interface LocationState {
   from?: { pathname: string };
@@ -37,7 +37,8 @@ export default function LoginPage() {
       const user = await login(values.email, values.password);
       toast.success(`Welcome back, ${user.name.split(" ")[0]}!`);
 
-      const redirectTo = (location.state as LocationState | null)?.from?.pathname ?? "/";
+      const fallback = user.role === "admin" ? "/admin" : "/";
+      const redirectTo = (location.state as LocationState | null)?.from?.pathname ?? fallback;
       navigate(redirectTo, { replace: true });
     } catch (error) {
       const message = error instanceof Error ? error.message : "Something went wrong.";
@@ -102,7 +103,9 @@ export default function LoginPage() {
           </Button>
 
           <p className="text-center text-xs text-text-secondary/70">
-            Demo account: {DEMO_CREDENTIALS.email} / {DEMO_CREDENTIALS.password}
+            Demo customer: {DEMO_CREDENTIALS.email} / {DEMO_CREDENTIALS.password}
+            <br />
+            Demo admin: {DEMO_ADMIN_CREDENTIALS.email} / {DEMO_ADMIN_CREDENTIALS.password}
           </p>
         </form>
       </AuthCard>

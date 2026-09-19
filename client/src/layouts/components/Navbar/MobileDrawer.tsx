@@ -80,6 +80,7 @@ export default function MobileDrawer({
             <MobileUserMenu
               userName={user.name}
               avatarUrl={user.avatarUrl}
+              role={user.role}
               closeMenu={closeMenu}
               onLogout={onLogout}
             />

@@ -89,7 +89,7 @@ export default function AboutPage() {
               Why Choose Us?
             </span>
 
-            <h2 className="mt-3 font-redhat text-3xl font-bold text-text-primary sm:text-4xl">
+            <h2 className="mt-3 font-redhat text-3xl font-bold sm:text-4xl">
               More than just clean clothes.
             </h2>
           </div>

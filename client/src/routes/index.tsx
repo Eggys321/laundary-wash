@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import { AccountLayout, AuthLayout, CustomerLayout } from "@/layouts";
+import { AccountLayout, AdminLayout, AuthLayout, CustomerLayout } from "@/layouts";
 import RootLayout from "@/layouts/RootLayout";
 import { PageLoader } from "@/components";
 import ErrorPage from "@/pages/ErrorPage";
@@ -27,6 +27,11 @@ const NotificationsPage = lazy(() => import("@/pages/NotificationsPage"));
 const SettingsPage = lazy(() => import("@/pages/SettingsPage"));
 const PaymentsPage = lazy(() => import("@/pages/PaymentsPage"));
 const SupportPage = lazy(() => import("@/pages/SupportPage"));
+const AdminDashboardPage = lazy(() => import("@/pages/admin/AdminDashboardPage"));
+const AdminOrdersPage = lazy(() => import("@/pages/admin/AdminOrdersPage"));
+const AdminRevenuePage = lazy(() => import("@/pages/admin/AdminRevenuePage"));
+const AdminUsersPage = lazy(() => import("@/pages/admin/AdminUsersPage"));
+const AdminDeliveriesPage = lazy(() => import("@/pages/admin/AdminDeliveriesPage"));
 
 const withSuspense = (element: ReactNode) => (
   <Suspense fallback={<PageLoader />}>{element}</Suspense>
@@ -88,6 +93,21 @@ const router = createBrowserRouter([
             path: "forgot-password",
             element: withSuspense(<ForgotPasswordPage />),
           },
+        ],
+      },
+      {
+        path: "admin",
+        element: (
+          <ProtectedRoute role="admin">
+            <AdminLayout />
+          </ProtectedRoute>
+        ),
+        children: [
+          { index: true, element: withSuspense(<AdminDashboardPage />) },
+          { path: "orders", element: withSuspense(<AdminOrdersPage />) },
+          { path: "revenue", element: withSuspense(<AdminRevenuePage />) },
+          { path: "users", element: withSuspense(<AdminUsersPage />) },
+          { path: "deliveries", element: withSuspense(<AdminDeliveriesPage />) },
         ],
       },
       {

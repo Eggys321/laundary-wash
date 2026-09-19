@@ -1,13 +1,14 @@
 import { ChevronDown, UserCircle } from "lucide-react";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
 import { useState } from "react";
 
-import { accountNavigationLinks } from "@/constants";
+import AccountMenuLinks from "../AccountMenuLinks";
+import type { UserRole } from "@/data/mockUsers";
 
 interface MobileUserMenuProps {
   userName: string;
   avatarUrl?: string;
+  role?: UserRole;
   closeMenu: () => void;
   onLogout?: () => void;
 }
@@ -15,6 +16,7 @@ interface MobileUserMenuProps {
 export default function MobileUserMenu({
   userName,
   avatarUrl,
+  role,
   closeMenu,
   onLogout,
 }: MobileUserMenuProps) {
@@ -55,30 +57,9 @@ export default function MobileUserMenu({
 
       {isOpen && (
         <div className="px-5 pb-5">
-          <nav className="rounded-xl bg-[#444444] p-3">
-            {accountNavigationLinks.map(({ label, path, icon }) => (
-              <Link
-                key={path}
-                to={path}
-                onClick={closeMenu}
-                className="flex items-center gap-2 rounded-lg px-4 py-3 text-sm text-white/80 hover:bg-white/10 hover:text-white"
-              >
-                {icon && <img src={icon} alt="" className="h-4 w-4" />}
-                {label}
-              </Link>
-            ))}
-
-            <button
-              type="button"
-              onClick={() => {
-                closeMenu();
-                onLogout?.();
-              }}
-              className="w-full rounded-lg px-4 py-3 text-left text-sm text-white/80 hover:bg-white/10 hover:text-white"
-            >
-              Logout
-            </button>
-          </nav>
+          <div className="rounded-xl bg-[#444444] p-3">
+            <AccountMenuLinks role={role} onNavigate={closeMenu} onLogout={onLogout} />
+          </div>
         </div>
       )}
     </div>

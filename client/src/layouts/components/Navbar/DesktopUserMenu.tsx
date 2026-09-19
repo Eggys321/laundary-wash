@@ -1,20 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown, UserCircle } from "lucide-react";
-import { Link } from "react-router-dom";
 import clsx from "clsx";
-import logOutLogo from "@/assets/images/log-out-img.png"
 
-import { accountNavigationLinks } from "@/constants";
+import AccountMenuLinks from "../AccountMenuLinks";
+import type { UserRole } from "@/data/mockUsers";
 
 interface DesktopUserMenuProps {
   userName?: string;
   avatarUrl?: string;
+  role?: UserRole;
   onLogout?: () => void;
 }
 
 export default function DesktopUserMenu({
   userName,
   avatarUrl,
+  role,
   onLogout,
 }: DesktopUserMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -109,31 +110,7 @@ export default function DesktopUserMenu({
             : "invisible scale-95 opacity-0",
         )}
       >
-        <nav className="flex flex-col">
-          {accountNavigationLinks.map(({ label, path, icon }) => (
-            <Link
-              key={path}
-              to={path}
-              onClick={() => setIsOpen(false)}
-              className="rounded-lg flex gap-2 items-center px-4 py-3 text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              {icon && <img src={icon} alt="" className="h-5 w-5 shrink-0" />}
-              {label}
-            </Link>
-          ))}
-
-          <button
-            type="button"
-            onClick={() => {
-              setIsOpen(false);
-              onLogout?.();
-            }}
-            className="rounded-lg px-4 py-3 gap-2 flex items-center text-left text-sm text-white/80 transition-colors hover:bg-white/10 hover:text-white"
-          >
-            <img src={logOutLogo} alt="" className="h-5 w-5 shrink-0" />
-            <span>Logout</span>
-          </button>
-        </nav>
+        <AccountMenuLinks role={role} onNavigate={() => setIsOpen(false)} onLogout={onLogout} />
       </div>
     </div>
   );

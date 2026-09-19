@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { SEED_ACCOUNTS, type RegisteredAccount } from "@/data/mockUsers";
+import { SEED_ACCOUNTS, type RegisteredAccount, type UserRole } from "@/data/mockUsers";
 
 export interface AuthUser {
   id: string;
@@ -10,6 +10,8 @@ export interface AuthUser {
   phone: string;
   address: string;
   avatarUrl: string;
+  role: UserRole;
+  createdAt: string;
 }
 
 export interface RegisterInput {
@@ -83,6 +85,8 @@ export const useAuthStore = create<AuthState>()(
           phone: "",
           address: "",
           avatarUrl: "",
+          role: "customer",
+          createdAt: new Date().toISOString(),
         };
 
         set((state) => ({ accounts: [...state.accounts, account] }));
@@ -159,6 +163,18 @@ export const useAuthStore = create<AuthState>()(
         isAuthenticated: state.isAuthenticated,
         accounts: state.accounts,
       }),
+      merge: (persistedState, currentState) => {
+        const persisted = (persistedState ?? {}) as Partial<AuthState>;
+        const persistedAccounts = persisted.accounts ?? [];
+        const existingIds = new Set(persistedAccounts.map((account) => account.id));
+        const missingSeeds = SEED_ACCOUNTS.filter((seed) => !existingIds.has(seed.id));
+
+        return {
+          ...currentState,
+          ...persisted,
+          accounts: [...persistedAccounts, ...missingSeeds],
+        };
+      },
     },
   ),
 );

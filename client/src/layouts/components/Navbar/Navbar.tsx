@@ -40,6 +40,7 @@ export default function Navbar() {
           <DesktopUserMenu
             userName={user.name}
             avatarUrl={user.avatarUrl}
+            role={user.role}
             onLogout={logout}
           />
         )}
