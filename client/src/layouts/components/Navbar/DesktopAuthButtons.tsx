@@ -12,7 +12,7 @@ export default function DesktopAuthButtons({
   }
 
   return (
-    <div className="hidden items-center gap-3 font-lato text-lg md:flex">
+    <div className="hidden items-center gap-3 font-lato text-lg lg:flex">
       <Link
         to="/register"
         className="btn btn-primary h-13 rounded-[10px] px-8 lg:rounded-[30px] lg:px-11"
