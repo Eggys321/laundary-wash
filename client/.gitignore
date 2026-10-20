@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-CLAUDE.md
+/claude.md
 .env
 .env.*
 !.env.example
